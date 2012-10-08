@@ -5,8 +5,9 @@ from os import path
 from time import sleep
 from sys import stdout as out
 
-if path.exists('/home/dotcloud/environment.json'):
-    with open('/home/dotcloud/environment.json') as f:
+dotcloud_env_file_path = path.expanduser('~/environment.json')
+if path.exists(dotcloud_env_file_path):
+    with open(dotcloud_env_file_path) as f:
         env = json.load(f)
 else:
         env = {
@@ -34,7 +35,6 @@ for i in xrange(1,30):
         out.write("\n")
         break
     except Exception as e:
-        raise e
         sleep(1)
         out.write(".")
         out.flush()
