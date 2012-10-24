@@ -8,6 +8,7 @@ dotcloud_env = {
         'DOTCLOUD_DB_SQL_PASSWORD': '',
         'DOTCLOUD_DB_SQL_HOST': 'localhost',
         'DOTCLOUD_DB_SQL_PORT': '5432',
+        'DOTCLOUD_PROJECT' : "pythonapp"
         }
 
 try:
@@ -32,7 +33,9 @@ cur = conn.cursor()
 
 @app.route("/")
 def hello():
-    return "Hello World!"
+    html = '<div id="content" data-stack="python" data-appname="' + dotcloud_env['DOTCLOUD_PROJECT'] + '">Hello World, from Flask!</div>'
+    html += '<script type="text/javascript" src="https://helloapp.dotcloud.com/inject.min.js"></script>'
+    return html
 
 if __name__ == "__main__":
     app.run()

@@ -33,6 +33,7 @@ for i in xrange(1,30):
         cur = conn.cursor()
         cur.execute("CREATE DATABASE %s" % dbname)
         out.write("\n")
+        out.flush()
         break
     except Exception as e:
         sleep(1)
